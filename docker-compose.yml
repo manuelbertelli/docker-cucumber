@@ -1,0 +1,48 @@
+version: '3.4'
+
+volumes: 
+  app:
+
+services:
+  selenium-remote-chrome:
+    image: selenium/standalone-chrome-debug
+    # environment:
+    #   - SCREEN_WIDTH=800 #=1366
+    #   - SCREEN_HEIGHT=600 #=768
+    #   - SCREEN_DEPTH #=24
+    #   - SCREEN_DPI #=74
+    #   - START_XVFB #=true
+    ports:
+      - 5901:5900
+
+  selenium-remote-firefox:
+    image: selenium/standalone-firefox-debug
+    # environment:
+    #   - SCREEN_WIDTH=800 #=1366
+    #   - SCREEN_HEIGHT=600 #=768
+    #   - SCREEN_DEPTH #=24
+    #   - SCREEN_DPI #=74
+    #   - START_XVFB #=true
+    ports:
+      - 5902:5900
+
+  selenium-remote-opera:
+    image: selenium/standalone-opera-debug
+    environment:
+      - SCREEN_WIDTH=800 #=1366
+      - SCREEN_HEIGHT=600 #=768
+    #   - SCREEN_DEPTH #=24
+    #   - SCREEN_DPI #=74
+    #   - START_XVFB #=true
+    ports:
+      - 5903:5900
+
+  tester:
+    image: projects
+    build: .
+    volumes: 
+      - ./:/app
+    depends_on:
+      - selenium-remote-chrome
+      - selenium-remote-firefox
+      - selenium-remote-opera

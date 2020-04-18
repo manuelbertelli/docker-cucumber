@@ -1,0 +1,9 @@
+---
+
+default: -p pretty -p html -p remote-chrome
+
+pretty: --format pretty
+html: --format html --out=reports/relatorio.html
+remote-chrome: BROWSER=selenium_remote_chrome
+remote-firefox: BROWSER=selenium_remote_firefox
+remote-opera: BROWSER=selenium_remote_opera
