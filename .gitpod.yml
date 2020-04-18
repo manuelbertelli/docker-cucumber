@@ -1,0 +1,3 @@
+tasks:
+  - init: docker-compose build
+image: gitpod/workspace-full
